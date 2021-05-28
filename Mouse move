@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>test1 - mouse</title>
+        <meta charset="utf-8">
+        <style>
+            body {
+                position : relative;
+                background-color : black;
+            }
+            h1 {
+                color: #fff;
+            }
+            .cursor_item {
+                position : absolute;
+                width : 100px;
+                height : 100px;
+                background-color : blueviolet;
+                top : 0;
+                left : 0;
+            }
+        </style>
+        <script>
+            let x = 0, y = 0;
+            let mouseX = 0, mouseY = 0, speed = 0.05;
+            let cursor_item;
+            window.onload = function() {
+                let h1 = document.getElementsByTagName("h1")[0];
+                cursor_item = document.getElementsByClassName("cursor_item")[0]
+                window.addEventListener("mousemove", mouseFunc, false);
+
+                function mouseFunc(e) {
+                    x = e.clientX;
+                    y = e.clientY;
+                    h1.innerHTML = "X : " + x + "   Y : " + y;
+                }
+
+                loop();
+            }
+            function loop() {
+                mouseX += (x - mouseX) * speed;
+                mouseY += (y - mouseY) * speed;
+                cursor_item.style.transform = "translate(" + mouseX + "px, " + mouseY + "px)";
+                //console.log(x, y);
+                window.requestAnimationFrame(loop);
+            }   
+        </script>
+    </head>
+
+    <body>
+        <h1>자연에서 갓 따옴</h1>
+        <div class="cursor_item"></div>
+    </body>
+</html>
