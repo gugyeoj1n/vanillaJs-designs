@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>clone - fixnothing</title>
+        <meta charset="utf-8">
+        <style>
+            body {
+                position : relative;
+                background-color : black;
+                overflow: hidden;
+            }
+            h1 {
+                color: #fff;
+            }
+            .human {
+                position : absolute;
+                left : calc(50% - 150px);
+                width : 300px;
+                z-index : 100;
+            }
+            .bg {
+                width : 1600px;
+                height : 900px;
+            }
+        </style>
+        <script>
+            let x = 0, y = 0;
+            let mouseX = 0, mouseY = 0, speed = 0.01;
+            let human, bg;
+
+            window.onload = function() {
+                human = document.getElementsByClassName("human")[0]
+                bg = document.getElementsByClassName("bg")[0]
+                window.addEventListener("mousemove", mouseFunc, false);
+
+                function mouseFunc(e) {
+                    x = e.clientX - (window.innerWidth / 2);
+                    y = e.clientY - (window.innerHeight / 2);
+                }
+
+                loop();
+            }
+            function loop() {
+                mouseX += (x - mouseX) * speed;
+                mouseY += (y - mouseY) * speed;
+                human.style.transform = "translate(" + -(mouseX / 5) + "px, " + -(mouseY / 3) + "px)";
+                bg.style.transform = "translate(" + (mouseX / 5) + "px, " + (mouseY / 3) + "px)";
+                //console.log(x, y);
+                window.requestAnimationFrame(loop);
+            }   
+        </script>
+    </head>
+
+    <body>
+        <img src="./layer-7.png" class="human" alt="girl">
+        <img src="/layer-1.jpg" class="bg" alt="wall">
+    </body>
+</html>
