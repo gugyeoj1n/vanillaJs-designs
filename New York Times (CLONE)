@@ -6,7 +6,7 @@
         <style>
             body {
                 position : relative;
-                background-color : yellowgreen;
+                background : linear-gradient(150deg, yellowgreen, skyblue, coral);
                 /*overflow: hidden;*/
             }
 
